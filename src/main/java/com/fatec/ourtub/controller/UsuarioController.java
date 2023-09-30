@@ -32,4 +32,19 @@ public class UsuarioController {
 						 .map(resp -> ResponseEntity.ok(resp))
 						 .orElse(ResponseEntity.notFound().build());
 	}
+	@PostMapping
+	public ResponseEntity<Usuario> post(@RequestBody Usuario usuario){
+		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(usuario));
+	}
+
+	@PutMapping
+	public ResponseEntity<Usuario> post(@RequestBody Usuario usuario){
+	public ResponseEntity<Usuario> put(@RequestBody Usuario usuario){
+		return ResponseEntity.status(HttpStatus.OK).body(repository.save(usuario));
+	}
+
+	@DeleteMapping("/{id}")
+	public void delete(@PathVariable long id){
+		repository.deleteAllById(id);
+	}
 }

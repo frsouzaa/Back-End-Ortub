@@ -32,4 +32,20 @@ public class VideoController {
 						 .map(resp -> ResponseEntity.ok(resp))
 						 .orElse(ResponseEntity.notFound().build());
 	}
+
+	@PostMapping
+	public ResponseEntity<Video> post(@RequestBody Video video){
+		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(video));
+	}
+
+	@PutMapping
+	public ResponseEntity<Video> post(@RequestBody Video video){
+	public ResponseEntity<Video> put(@RequestBody Video video){
+		return ResponseEntity.status(HttpStatus.OK).body(repository.save(video));
+	}
+
+	@DeleteMapping("/{id}")
+	public void delete(@PathVariable long id){
+		repository.deleteAllById(id);
+	}
 }
