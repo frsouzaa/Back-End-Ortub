@@ -21,7 +21,6 @@ public class Video {
 	private long id_usuario;
 	private String data_publi;
 	private int views;
-	private int curtidas;
 	
 
 	public long getId() {
@@ -95,12 +94,4 @@ public class Video {
 	public void setViews(int views) {
 		this.views = views;
 	}
-
-	public int getCurtidas() {
-		return this.curtidas;
-	}
-
-	public void setCurtidas(int curtidas) {
-		this.curtidas = curtidas;
-	}	
 }

@@ -16,7 +16,6 @@ public class Comentario {
 	private long id_usuario;
 	private long id_video;
 	private String texto;
-	private int curtidas;
 	
 
 	public long getId() {
@@ -50,12 +49,4 @@ public class Comentario {
 	public void setTexto(String texto) {
 		this.texto = texto;
 	}
-
-	public int getCurtidas() {
-		return this.curtidas;
-	}
-
-	public void setCurtidas(int curtidas) {
-		this.curtidas = curtidas;
-	}	
 }
