@@ -12,8 +12,17 @@ public class CurtidaComentario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 	private long id_comentario;
 	private long id_usuario;
+
+	public long getId() {
+		return this.id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
 	
 	public long getId_comentario() {
 		return this.id_comentario;
