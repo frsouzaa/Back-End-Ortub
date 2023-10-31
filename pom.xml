@@ -11,6 +11,10 @@
 	<groupId>com.fatec</groupId>
 	<artifactId>ourtub</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<scm>
+		<developerConnection>scm:git:git@github.com:frsouzaa/Back-End-Ourtub.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
 	<name>ourtub</name>
 	<description>Back-end Ourtub</description>
 	<properties>
