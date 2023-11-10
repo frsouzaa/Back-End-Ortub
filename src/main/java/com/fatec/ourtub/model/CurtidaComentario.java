@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -13,8 +15,12 @@ public class CurtidaComentario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private long comentario;
-	private long usuario;
+	@ManyToOne
+	@PrimaryKeyJoinColumn(name = "comentario", referencedColumnName = "id")
+	private Comentario comentario;
+	@ManyToOne
+	@PrimaryKeyJoinColumn(name = "usuario", referencedColumnName = "id")
+	private Usuario usuario;
 
 	public long getId() {
 		return this.id;
@@ -24,18 +30,18 @@ public class CurtidaComentario {
 		this.id = id;
 	}
 	
-	public long getComentario() {
+	public Comentario getComentario() {
 		return this.comentario;
 	}
-	public void setComentario(long comentario) {
+	public void setComentario(Comentario comentario) {
 		this.comentario = comentario;
 	}
 
-	public long getUsuario() {
+	public Usuario getUsuario() {
 		return this.usuario;
 	}
 
-	public void setUsuario(long usuario) {
+	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 }

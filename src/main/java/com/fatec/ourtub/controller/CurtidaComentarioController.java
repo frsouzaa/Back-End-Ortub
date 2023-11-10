@@ -27,7 +27,7 @@ public class CurtidaComentarioController {
 
 	@GetMapping("/{comentario}")
 	public ResponseEntity<List<CurtidaComentario>> getByComentario(@PathVariable Long comentario) {
-		List<CurtidaComentario> curtidas = repository.findByComentario(comentario);
+		List<CurtidaComentario> curtidas = repository.findByComentarioId(comentario);
 		if (curtidas.isEmpty()) {
 			return ResponseEntity.notFound().build();
 		}
@@ -36,11 +36,15 @@ public class CurtidaComentarioController {
 
 	@PostMapping
 	public ResponseEntity<CurtidaComentario> post(@RequestBody CurtidaComentario curtidaComentario) {
-		List<CurtidaComentario> curtidas = repository.findByComentarioAndUsuario(curtidaComentario.getComentario(), curtidaComentario.getUsuario());
-		if (!curtidas.isEmpty()) {
+		try {
+			List<CurtidaComentario> curtidas = repository.findByComentarioIdAndUsuarioId(curtidaComentario.getComentario().getId(), curtidaComentario.getUsuario().getId());
+			if (!curtidas.isEmpty()) {
+				return ResponseEntity.badRequest().build();
+			}
+			return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(curtidaComentario));
+		} catch (Exception e) {
 			return ResponseEntity.badRequest().build();
 		}
-		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(curtidaComentario));
 	}
 
 	@DeleteMapping("/{id}")

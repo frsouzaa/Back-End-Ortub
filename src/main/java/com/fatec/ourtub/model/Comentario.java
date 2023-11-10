@@ -16,7 +16,13 @@ public class Comentario {
 	private long usuario;
 	private long video;
 	private String texto;
-	
+
+	public Comentario() {
+	}
+
+	public Comentario(long id) {
+		this.id = id;
+	}
 
 	public long getId() {
 		return this.id;
