@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -18,9 +20,11 @@ public class Video {
 	private int duracao; // segundos
 	private String descricao;
 	private String capa;
-	private long usuario;
 	private String dataPubli;
 	private int views;
+	@ManyToOne
+	@PrimaryKeyJoinColumn(name = "usuario", referencedColumnName = "id")
+	private Usuario usuario;
 
 	public Video() {
 	}
@@ -77,11 +81,11 @@ public class Video {
 		this.capa = capa;
 	}
 
-	public long getUsuario() {
+	public Usuario getUsuario() {
 		return this.usuario;
 	}
 
-	public void setUsuario(long usuario) {
+	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 

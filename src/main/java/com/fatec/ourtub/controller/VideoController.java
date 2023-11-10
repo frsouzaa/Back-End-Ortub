@@ -25,31 +25,39 @@ public class VideoController {
 
 	@Autowired
 	private VideoRepository repository;
-	
+
 	@GetMapping
-	public ResponseEntity<List<Video>> GetAll(){
+	public ResponseEntity<List<Video>> GetAll() {
 		return ResponseEntity.ok(repository.findAll());
 	}
-	
+
 	@GetMapping("/{id}")
-	public ResponseEntity<Video> GetById(@PathVariable long id){
+	public ResponseEntity<Video> GetById(@PathVariable long id) {
 		return repository.findById(id)
-						 .map(resp -> ResponseEntity.ok(resp))
-						 .orElse(ResponseEntity.notFound().build());
+				.map(resp -> ResponseEntity.ok(resp))
+				.orElse(ResponseEntity.notFound().build());
 	}
 
 	@PostMapping
-	public ResponseEntity<Video> post(@RequestBody Video video){
-		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(video));
+	public ResponseEntity<Video> post(@RequestBody Video video) {
+		try {
+			return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(video));
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().build();
+		}
 	}
 
 	@PutMapping
-	public ResponseEntity<Video> put(@RequestBody Video video){
-		return ResponseEntity.status(HttpStatus.OK).body(repository.save(video));
+	public ResponseEntity<Video> put(@RequestBody Video video) {
+		try {
+			return ResponseEntity.status(HttpStatus.OK).body(repository.save(video));
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().build();
+		}
 	}
 
 	@DeleteMapping("/{id}")
-	public void delete(@PathVariable long id){
+	public void delete(@PathVariable long id) {
 		repository.deleteById(id);
 	}
 }

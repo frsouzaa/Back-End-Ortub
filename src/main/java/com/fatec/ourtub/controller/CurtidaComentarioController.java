@@ -37,7 +37,8 @@ public class CurtidaComentarioController {
 	@PostMapping
 	public ResponseEntity<CurtidaComentario> post(@RequestBody CurtidaComentario curtidaComentario) {
 		try {
-			List<CurtidaComentario> curtidas = repository.findByComentarioIdAndUsuarioId(curtidaComentario.getComentario().getId(), curtidaComentario.getUsuario().getId());
+			List<CurtidaComentario> curtidas = repository.findByComentarioIdAndUsuarioId(
+					curtidaComentario.getComentario().getId(), curtidaComentario.getUsuario().getId());
 			if (!curtidas.isEmpty()) {
 				return ResponseEntity.badRequest().build();
 			}

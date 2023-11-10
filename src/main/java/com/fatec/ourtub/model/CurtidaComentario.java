@@ -29,10 +29,11 @@ public class CurtidaComentario {
 	public void setId(long id) {
 		this.id = id;
 	}
-	
+
 	public Comentario getComentario() {
 		return this.comentario;
 	}
+
 	public void setComentario(Comentario comentario) {
 		this.comentario = comentario;
 	}

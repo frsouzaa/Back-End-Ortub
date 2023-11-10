@@ -11,7 +11,7 @@ import com.fatec.ourtub.model.CurtidaComentario;
 public interface CurtidaComentarioRepository extends JpaRepository<CurtidaComentario, Long> {
 
     public List<CurtidaComentario> findByComentarioId(Long comentario);
-    
+
     public List<CurtidaComentario> findByComentarioIdAndUsuarioId(Long comentario, long usuario);
 
 }
