@@ -18,8 +18,8 @@ public class Video {
 	private int duracao; // segundos
 	private String descricao;
 	private String capa;
-	private long id_usuario;
-	private String data_publi;
+	private long usuario;
+	private String dataPubli;
 	private int views;
 	
 
@@ -71,20 +71,20 @@ public class Video {
 		this.capa = capa;
 	}
 
-	public long getId_usuario() {
-		return this.id_usuario;
+	public long getUsuario() {
+		return this.usuario;
 	}
 
-	public void setId_usuario(long id_usuario) {
-		this.id_usuario = id_usuario;
+	public void setUsuario(long usuario) {
+		this.usuario = usuario;
 	}
 
-	public String getData_publi() {
-		return this.data_publi;
+	public String getDataPubli() {
+		return this.dataPubli;
 	}
 
-	public void setData_publi(String data_publi) {
-		this.data_publi = data_publi;
+	public void setDataPubli(String dataPubli) {
+		this.dataPubli = dataPubli;
 	}
 
 	public int getViews() {
