@@ -21,7 +21,13 @@ public class Video {
 	private long usuario;
 	private String dataPubli;
 	private int views;
-	
+
+	public Video() {
+	}
+
+	public Video(long id) {
+		this.id = id;
+	}
 
 	public long getId() {
 		return this.id;

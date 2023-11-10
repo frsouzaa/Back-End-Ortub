@@ -10,8 +10,8 @@ import com.fatec.ourtub.model.CurtidaVideo;
 @Repository
 public interface CurtidaVideoRepository extends JpaRepository<CurtidaVideo, Long> {
 
-    public List<CurtidaVideo> findByVideo(Long video_id);
+    public List<CurtidaVideo> findByVideoId(Long video);
 
-    public List<CurtidaVideo> findByVideoAndUsuario(Long video, Long usuario);
+    public List<CurtidaVideo> findByVideoIdAndUsuarioId(Long video, Long usuario);
 
 }

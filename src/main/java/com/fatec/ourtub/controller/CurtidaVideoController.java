@@ -27,24 +27,29 @@ public class CurtidaVideoController {
 
 	@GetMapping("/{video}")
 	public ResponseEntity<List<CurtidaVideo>> getByVideo(@PathVariable Long video) {
-		List<CurtidaVideo> curtidas = repository.findByVideo(video);
+		List<CurtidaVideo> curtidas = repository.findByVideoId(video);
 		if (curtidas.isEmpty()) {
 			return ResponseEntity.notFound().build();
 		}
 		return ResponseEntity.ok(curtidas);
 	}
-	
+
 	@PostMapping
 	public ResponseEntity<CurtidaVideo> post(@RequestBody CurtidaVideo curtidaVideo) {
-		List<CurtidaVideo> curtidas = repository.findByVideoAndUsuario(curtidaVideo.getVideo(), curtidaVideo.getUsuario());
-		if (!curtidas.isEmpty()) {
+		try {
+			List<CurtidaVideo> curtidas = repository.findByVideoIdAndUsuarioId(curtidaVideo.getVideo().getId(),
+					curtidaVideo.getUsuario().getId());
+			if (!curtidas.isEmpty()) {
+				return ResponseEntity.badRequest().build();
+			}
+			return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(curtidaVideo));
+		} catch (Exception e) {
 			return ResponseEntity.badRequest().build();
 		}
-		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(curtidaVideo));
 	}
 
 	@DeleteMapping("/{id}")
-	public void delete(@PathVariable long id){
+	public void delete(@PathVariable long id) {
 		repository.deleteById(id);
 	}
 }
