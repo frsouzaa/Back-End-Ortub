@@ -25,31 +25,39 @@ public class ComentarioController {
 
 	@Autowired
 	private ComentarioRepository repository;
-	
+
 	@GetMapping
-	public ResponseEntity<List<Comentario>> GetAll(){
+	public ResponseEntity<List<Comentario>> GetAll() {
 		return ResponseEntity.ok(repository.findAll());
 	}
-	
+
 	@GetMapping("/{id}")
-	public ResponseEntity<Comentario> GetById(@PathVariable long id){
+	public ResponseEntity<Comentario> GetById(@PathVariable long id) {
 		return repository.findById(id)
-						 .map(resp -> ResponseEntity.ok(resp))
-						 .orElse(ResponseEntity.notFound().build());
+				.map(resp -> ResponseEntity.ok(resp))
+				.orElse(ResponseEntity.notFound().build());
 	}
 
 	@PostMapping
-	public ResponseEntity<Comentario> post(@RequestBody Comentario comentario){
-		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(comentario));
+	public ResponseEntity<Comentario> post(@RequestBody Comentario comentario) {
+		try {
+			return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(comentario));
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().build();
+		}
 	}
 
 	@PutMapping
-	public ResponseEntity<Comentario> put(@RequestBody Comentario comentario){
-		return ResponseEntity.status(HttpStatus.OK).body(repository.save(comentario));
+	public ResponseEntity<Comentario> put(@RequestBody Comentario comentario) {
+		try {
+			return ResponseEntity.status(HttpStatus.OK).body(repository.save(comentario));
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().build();
+		}
 	}
 
 	@DeleteMapping("/{id}")
-	public void delete(@PathVariable long id){
+	public void delete(@PathVariable long id) {
 		repository.deleteById(id);
 	}
 }

@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -13,9 +15,13 @@ public class Comentario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private long usuario;
-	private long video;
 	private String texto;
+	@ManyToOne
+	@PrimaryKeyJoinColumn(name = "usuario", referencedColumnName = "id")
+	private Usuario usuario;
+	@ManyToOne
+	@PrimaryKeyJoinColumn(name = "video", referencedColumnName = "id")
+	private Video video;
 
 	public Comentario() {
 	}
@@ -32,27 +38,27 @@ public class Comentario {
 		this.id = id;
 	}
 
-	public long getUsuario() {
-		return this.usuario;
-	}
-
-	public void setUsuario(long usuario) {
-		this.usuario = usuario;
-	}
-
-	public long getVideo() {
-		return this.video;
-	}
-
-	public void setVideo(long video) {
-		this.video = video;
-	}
-
 	public String getTexto() {
 		return this.texto;
 	}
 
 	public void setTexto(String texto) {
 		this.texto = texto;
+	}
+
+	public Usuario getUsuario() {
+		return this.usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Video getVideo() {
+		return this.video;
+	}
+
+	public void setVideo(Video video) {
+		this.video = video;
 	}
 }
