@@ -37,6 +37,7 @@ public class UsuarioController {
 						 .map(resp -> ResponseEntity.ok(resp))
 						 .orElse(ResponseEntity.notFound().build());
 	}
+	
 	@PostMapping
 	public ResponseEntity<Usuario> post(@RequestBody Usuario usuario){
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(usuario));

@@ -13,8 +13,8 @@ public class CurtidaVideo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private long id_video;
-	private long id_usuario;
+	private long video;
+	private long usuario;
 
 	public long getId() {
 		return this.id;
@@ -24,19 +24,19 @@ public class CurtidaVideo {
 		this.id = id;
 	}
 	
-	public long getId_video() {
-		return this.id_video;
+	public long getVideo() {
+		return this.video;
 	}
 
-	public void setId_video(long id_video) {
-		this.id_video = id_video;
+	public void setVideo(long video) {
+		this.video = video;
 	}
 
-	public long getId_usuario() {
-		return this.id_usuario;
+	public long getUsuario() {
+		return this.usuario;
 	}
 
-	public void setId_usuario(long id_usuario) {
-		this.id_usuario = id_usuario;
+	public void setUsuario(long usuario) {
+		this.usuario = usuario;
 	}
 }

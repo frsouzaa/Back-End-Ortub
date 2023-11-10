@@ -13,8 +13,8 @@ public class CurtidaComentario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private long id_comentario;
-	private long id_usuario;
+	private long comentario;
+	private long usuario;
 
 	public long getId() {
 		return this.id;
@@ -24,18 +24,18 @@ public class CurtidaComentario {
 		this.id = id;
 	}
 	
-	public long getId_comentario() {
-		return this.id_comentario;
+	public long getComentario() {
+		return this.comentario;
 	}
-	public void setId_comentario(long id_comentario) {
-		this.id_comentario = id_comentario;
-	}
-
-	public long getId_usuario() {
-		return this.id_usuario;
+	public void setComentario(long comentario) {
+		this.comentario = comentario;
 	}
 
-	public void setId_usuario(long id_usuario) {
-		this.id_usuario = id_usuario;
+	public long getUsuario() {
+		return this.usuario;
+	}
+
+	public void setUsuario(long usuario) {
+		this.usuario = usuario;
 	}
 }

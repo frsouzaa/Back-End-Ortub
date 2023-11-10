@@ -24,19 +24,27 @@ public class CurtidaComentarioController {
 
 	@Autowired
 	private CurtidaComentarioRepository repository;
-	
-	@GetMapping
-	public ResponseEntity<List<CurtidaComentario>> GetAll(){
-		return ResponseEntity.ok(repository.findAll());
+
+	@GetMapping("/{comentario}")
+	public ResponseEntity<List<CurtidaComentario>> getByComentario(@PathVariable Long comentario) {
+		List<CurtidaComentario> curtidas = repository.findByComentario(comentario);
+		if (curtidas.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(curtidas);
 	}
 
 	@PostMapping
-	public ResponseEntity<CurtidaComentario> post(@RequestBody CurtidaComentario curtidaComentario){
+	public ResponseEntity<CurtidaComentario> post(@RequestBody CurtidaComentario curtidaComentario) {
+		List<CurtidaComentario> curtidas = repository.findByComentarioAndUsuario(curtidaComentario.getComentario(), curtidaComentario.getUsuario());
+		if (!curtidas.isEmpty()) {
+			return ResponseEntity.badRequest().build();
+		}
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(curtidaComentario));
 	}
 
 	@DeleteMapping("/{id}")
-	public void delete(@PathVariable long id){
+	public void delete(@PathVariable long id) {
 		repository.deleteById(id);
 	}
 }

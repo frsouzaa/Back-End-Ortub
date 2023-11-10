@@ -24,14 +24,22 @@ public class CurtidaVideoController {
 
 	@Autowired
 	private CurtidaVideoRepository repository;
-	
-	@GetMapping
-	public ResponseEntity<List<CurtidaVideo>> GetAll(){
-		return ResponseEntity.ok(repository.findAll());
+
+	@GetMapping("/{video}")
+	public ResponseEntity<List<CurtidaVideo>> getByVideo(@PathVariable Long video) {
+		List<CurtidaVideo> curtidas = repository.findByVideo(video);
+		if (curtidas.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(curtidas);
 	}
 	
 	@PostMapping
-	public ResponseEntity<CurtidaVideo> post(@RequestBody CurtidaVideo curtidaVideo){
+	public ResponseEntity<CurtidaVideo> post(@RequestBody CurtidaVideo curtidaVideo) {
+		List<CurtidaVideo> curtidas = repository.findByVideoAndUsuario(curtidaVideo.getVideo(), curtidaVideo.getUsuario());
+		if (!curtidas.isEmpty()) {
+			return ResponseEntity.badRequest().build();
+		}
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(curtidaVideo));
 	}
 
